@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <title> Men Perfumes</title>
+</head>
+<body>
+    <section class="navbar">
+        <header class="navbar">
+            <nav>
+                <div class="container">
+                    <div class="main">
+                        <div class="search">
+                            <a href=""><i class="fa fa-search"></i></a>
+                        </div>
+                        <div class="logo">
+                            <a href=""><img src="/assets/images/logo.jpg" alt="Logo" width="125px" height="125px"></a>
+                        </div>
+                        <div class="shopping">
+                            <div class="cart">
+                                <a href="add_to_cart.html"><i class="fa-solid fa-cart-plus"></i></a>
+                            </div>
+                            <div class="admin">
+                                <a href=""><i class="fa-solid fa-user"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pagelink">
+                        <ul class="flex-item">
+                            <li class="list-item"><a class="name-pages" href="home.html"> Home </a></li>
+                            <li class="list-item"><a class="name-pages" href="newarrival.html"> New Arrival </a></li>
+                            <li class="list-item"><a class="name-pages" href="men.html">Men </a></li>
+                            <li class="list-item"><a class="name-pages" href="women.html">Women </a></li>
+                            <li class="list-item"><a class="name-pages" href="unisex.html">Unisex </a></li>
+                            <li class="list-item"><a class="name-pages" href="about.html">About Us </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+    </section>
+
+```
+<div class="container">
+    <div class="men">
+        <div class="container">
+            <div class="main-content">
+                <div class="arrival-title"><h1> Men Perfumes </h1></div>
+            </div>
+            <div class="main-card">
+                <!-- Product Card Template -->
+                <div class="card">
+                    <img src="/assets/images/men1.jpeg" alt="Perfum-1" width="250px" height="350px">
+                    <div class="card-content">
+                        <div class="star-icon">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                        <h4>Royal Four</h4>
+                        <strong> Rs /- 5430</strong>
+                    </div>
+                    <div class="btn-cart">
+                        <button class="cart_btn" onclick="addToCart('Royal Four', 5430, '/assets/images/men1.jpeg')">Add to cart</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="/assets/images/men2.jpeg" alt="Perfum-2" width="250px" height="350px">
+                    <div class="card-content">
+                        <div class="star-icon">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                        <h4>Strong Men FC</h4>
+                        <strong> Rs /- 7600</strong>
+                    </div>
+                    <div class="btn-cart">
+                        <button class="cart_btn" onclick="addToCart('Strong Men FC', 7600, '/assets/images/men2.jpeg')">Add to cart</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="/assets/images/men3.jpeg" alt="Perfum-3" width="250px" height="350px">
+                    <div class="card-content">
+                        <div class="star-icon">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                        <h4>Defender Aaromatic Club</h4>
+                        <strong> Rs /- 9999</strong>
+                    </div>
+                    <div class="btn-cart">
+                        <button class="cart_btn" onclick="addToCart('Defender Aaromatic Club', 9999, '/assets/images/men3.jpeg')">Add to cart</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="/assets/images/men4.jpg" alt="Perfum-4" width="250px" height="350px">
+                    <div class="card-content">
+                        <div class="star-icon">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                        <h4>Comme Une Evidence</h4>
+                        <strong> Rs /- 11599</strong>
+                    </div>
+                    <div class="btn-cart">
+                        <button class="cart_btn" onclick="addToCart('Comme Une Evidence', 11599, '/assets/images/men4.jpg')">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="bg_footer">
+    <div class="container">
+        <section class="footer_content">
+            <!-- footer content stays unchanged -->
+        </section>
+    </div>
+</footer>
+
+<script>
+    function addToCart(name, price, image) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        
+        // Check if item exists, increase quantity if yes
+        let existingItem = cart.find(item => item.name === name);
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({ name: name, price: price, image: image, quantity: 1 });
+        }
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+        alert(name + " added to cart!");
+        
+    }
+</script>
+```
+
+</body>
+</html>

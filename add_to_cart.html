@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <style>
+        .cart-container { width: 90%; margin: 30px auto; }
+        .cart-title h1 { text-align: center; margin-bottom: 30px; }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 40px;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #ccc;
+            gap: 15px;
+        }
+
+        .cart-item img { width: 70px; height: 70px; border-radius: 8px; }
+
+        .cart-total-box {
+            max-width: 350px;
+            margin-left: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .total-row { display: flex; justify-content: space-between; margin: 10px 0; }
+        .remove-btn { color: red; cursor: pointer; font-size: 18px; }
+        button.checkout-btn {
+            width: 100%; padding: 12px;
+            background: black; color: white; border: none;
+            cursor: pointer; margin-top: 15px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<section class="cart-container">
+    <div class="cart-title"><h1>Your Cart</h1></div>
+
+    <!-- CART ITEMS -->
+    <div id="cartItems"></div>
+
+    <!-- CART TOTAL -->
+    <div class="cart-total-box">
+        <h2>Cart Totals</h2>
+
+        <div class="total-row">
+            <p>Subtotal</p>
+            <strong id="subtotal">₨ 0</strong>
+        </div>
+
+        <div class="total-row">
+            <p>Total</p>
+            <strong id="total">₨ 0</strong>
+        </div>
+
+        <button class="checkout-btn">PROCEED TO CHECKOUT</button>
+    </div>
+</section>
+
+<script>
+    function loadCart() {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let container = document.getElementById("cartItems");
+        let subtotal = 0;
+
+        container.innerHTML = ""; // clear previous items
+
+        cart.forEach((item, index) => {
+            let itemTotal = item.price * item.quantity;
+            subtotal += itemTotal;
+
+            container.innerHTML += `
+                <div class="cart-item">
+                    <div class="product-info">
+                        <img src="${item.image}" alt="">
+                        <strong>${item.name}</strong>
+                    </div>
+                    <div>₨ ${item.price}</div>
+                    <div>${item.quantity}</div>
+                    <div>₨ ${itemTotal}</div>
+                    <div class="remove-btn" onclick="removeItem(${index})">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                </div>
+            `;
+        });
+
+        // Update totals
+        document.getElementById("subtotal").innerText = "₨ " + subtotal;
+        document.getElementById("total").innerText = "₨ " + subtotal; // total = subtotal (no fixed shipping)
+    }
+
+    function removeItem(index) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        loadCart();
+    }
+
+    loadCart();
+</script>
+
+</body>
+</html>
